@@ -9,9 +9,7 @@ class BinarySearchTree {
 private:
     unique_ptr<TreeNode<T>> root;
 
-public:
-    // TreeNode<T>* currentNode = nullptr;
-    
+public:    
     void write(ostream & o) const {
         root->write(o);
     }
