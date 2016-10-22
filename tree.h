@@ -51,6 +51,34 @@ public:
         }
         return nullptr;
     }
+
+    TreeNode<T>* find(const T & data) {
+        bool found = false;
+        TreeNode<T>* currentNode = root.get();
+        
+        while (!found) {
+            found = true;
+            if (data < currentNode->getData()) {
+                if (currentNode->leftChild) {
+                    currentNode = currentNode->leftChild.get();
+                    found = false;
+                } else {
+                    return nullptr;
+                }
+            } else if (currentNode->getData() < data ) {
+                if (currentNode->rightChild) {
+                    currentNode = currentNode->rightChild.get();
+                    found = false;
+                } else {
+                    return nullptr;
+                }
+            } else {
+                return currentNode;
+            }
+        }
+        
+        return nullptr;
+    }
     
 };
 
