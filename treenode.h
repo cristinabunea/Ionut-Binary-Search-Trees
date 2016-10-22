@@ -48,13 +48,10 @@ public:
             rightChild->write(o);
         }
     }
-
-    TreeNode* getRoot() {
-        if (!parent) {
-            return this;
-        }
-    }
     
+    T getData() const{
+        return data;
+    }
 };
 
 // do not edit below this line
