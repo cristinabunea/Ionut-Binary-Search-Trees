@@ -99,6 +99,16 @@ public:
 
         return itr;
     }
+
+    int maxDepth(){
+        int depth = 0;
+
+        if (root){
+            depth = root->maxDepth();
+        }
+
+        return depth;
+    }
     
 };
 

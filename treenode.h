@@ -52,6 +52,24 @@ public:
     T getData() const{
         return data;
     }
+
+    int maxDepth(){
+        int maxDepth = 0;
+        if (leftChild){
+            int leftDepth = leftChild->maxDepth();
+            if (maxDepth < leftDepth){
+                maxDepth = leftDepth;
+            }
+        }
+
+        if (rightChild){
+            int rigtDepth = rightChild->maxDepth();
+            if (maxDepth < rigtDepth){
+                maxDepth = rigtDepth;
+            }
+        } 
+        return maxDepth + 1;
+    }
 };
 
 template <typename TT>
