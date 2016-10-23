@@ -54,6 +54,71 @@ public:
     }
 };
 
+template <typename TT>
+
+class TreeNodeIterator{
+private:
+    TreeNode<TT>* current;
+
+public:
+    TreeNodeIterator(TreeNode<TT>* currentTreeNode)
+    : current(currentTreeNode) {}
+    
+    TT & operator*() {
+        return current->data;
+    }
+
+    bool operator==(const TreeNodeIterator<TT> & secondItr) const {
+        return current == secondItr.current;
+    }
+
+    bool operator!=(const TreeNodeIterator<TT> & secondItr) const {
+        return current != secondItr.current;
+    }
+
+    void operator++() {
+        TreeNode<TT>* mostLeft = current;
+        TreeNode<TT>* master = current;        
+        if (current->rightChild.get()){
+            current = current->rightChild.get();
+            mostLeft = getMostLeft(current);
+
+            if (mostLeft != current){
+                current = mostLeft;
+            } 
+        } else if (current->parent) {
+
+            TT x = current->getData();
+            master = current->parent;
+            TT y = master->getData();
+
+            while(y < x){
+
+                if (master->parent) {
+                    master = master->parent;
+                    y = master->getData();
+                } else {
+                    y = x;
+                    current = nullptr;
+                }
+            }
+            if (x < y){
+                current = master;
+            }
+        } else {
+            current = nullptr;
+        }        
+    }
+
+    TreeNode<TT>* getMostLeft(TreeNode<TT>* root) {
+        TreeNode<TT>* currentNode = root;
+        while(currentNode->leftChild.get()) {
+            currentNode = currentNode->leftChild.get();
+        }
+        return currentNode;
+    }
+};
+
 // do not edit below this line
 
 #endif

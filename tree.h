@@ -77,6 +77,28 @@ public:
         
         return nullptr;
     }
+
+    TreeNodeIterator<T> begin(){
+        TreeNodeIterator<T> itr = TreeNodeIterator<T>(nullptr);
+        TreeNode<T>* currentNode = nullptr;
+        if (root){
+            currentNode = root.get();
+            itr = TreeNodeIterator<T>(currentNode);
+
+            while(currentNode->leftChild) {
+                currentNode = currentNode->leftChild.get();
+                itr = TreeNodeIterator<T>(currentNode);
+            }
+        }
+
+        return itr;
+    }
+
+    TreeNodeIterator<T> end(){
+        TreeNodeIterator<T> itr = TreeNodeIterator<T>(nullptr);
+
+        return itr;
+    }
     
 };
 
