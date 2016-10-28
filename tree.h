@@ -74,7 +74,6 @@ public:
                 return currentNode;
             }
         }
-        
         return nullptr;
     }
 
